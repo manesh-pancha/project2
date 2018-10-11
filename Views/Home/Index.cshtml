@@ -1,0 +1,61 @@
+﻿@model IEnumerable<transfer_centre.Models.transfer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center">Transfer centre</h2>
+
+@Html.ActionLink("create new transfer", "Create")
+@using (Html.BeginForm())
+{
+    <p>
+        Name: @Html.TextBox("searchString")
+        <input type="submit" value="filter" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.transferred_from)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.transferred_to)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.value)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.image)
+        </th>
+      
+    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(m => item.Name)</td>
+                <td>@Html.DisplayFor(m => item.age)</td>
+                <td>@Html.DisplayFor(m => item.transferred_from)</td>
+                <td>@Html.DisplayFor(m => item.transferred_to)</td>
+                <td>@Html.DisplayFor(m => item.value)</td>
+                @*<td>@Html.DisplayFor(m => item.image)</td>*@
+                <td><img src="@Url.Content(item.image)" height="170" width="170" /></td>
+               
+
+               
+
+                <td>
+                    @Html.ActionLink("Edit Player", "Edit", new { id = item.ID })
+                    @Html.ActionLink("Player Details", "Details", new { id = item.ID })
+                    @Html.ActionLink("Delete Player", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+</table>
+
